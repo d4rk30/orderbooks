@@ -1,3 +1,4 @@
-da-env/
+env/
 data.db
 __pycache__/
+dev_help.md
