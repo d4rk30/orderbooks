@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+{% block styles %}
+{{super()}}
+<title>Gallery Page</title>
+<style>
+    .max-width-1200 {
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .card-img {
+        height: 238px;
+        overflow: hidden;
+    }
+
+    .card-img-top {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .card-img-top:hover {
+        transform: scale(1.2);
+        transition: transform 1s ease-in-out;
+    }
+
+    img:not(hover) {
+        transform: scale(1);
+        transition: transform 1s ease-in-out;
+    }
+
+    .card-body {
+        border-top: 1px solid #dee2e6;
+        /* Border separating image from body */
+    }
+
+    .card-title {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        height: auto;
+        /* remove fixed height */
+    }
+
+    .card-text {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        height: auto;
+        /* remove fixed height */
+        font-size: 14px;
+    }
+
+    .card-text {
+        height: 3.0em;
+        /* two lines */
+    }
+
+    .footer {
+        text-align: center;
+        padding: 1rem 0;
+    }
+
+    .card {
+        border: 1px solid #dee2e6;
+        /* Border around each card */
+        /* Spacing between cards */
+    }
+</style>
+{% endblock %}
+
+
+{% block content %}
+<div class="max-width-1200">
+
+    <!-- Header -->
+    <header class="d-flex justify-content-between py-3 border-bottom">
+        <img src="logo.png" alt="Logo" style="width: 120px; height: auto;">
+        <div>Company Description – We are providing excellent services</div>
+    </header>
+
+    <!-- Content -->
+    <div class="content py-4">
+        <a href="{}">1111</a>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <!-- Repeat this block for each item -->
+            <!-- Start of card example -->
+            {%for i in range(4)%}
+            {% set i = i ~ ".png" %}
+            <div class="col">
+                <div class="card">
+                    <div class="card-img">
+                        <img class="card-img-top" src="{{url_for('static',filename=i)}}" alt="">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Image Title <%= i %>
+                        </h5>
+                        <p class="card-text">This is a longer text to describe the image. This text may be cut off
+                            if it's too long.</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            <!-- End of card example -->
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer border-top">
+        © 2023 Your Company Name. All rights reserved.
+    </footer>
+
+</div>
+
+{% endblock %}
